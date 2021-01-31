@@ -1,0 +1,2 @@
+using Forfun
+Forfun.main()
