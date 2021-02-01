@@ -1,6 +1,4 @@
 using Genie, Genie.Router, Genie.Renderer.Json, Genie.Requests
-using JLD
-
 
 route("/") do
   serve_static_file("welcome.html")
@@ -21,11 +19,11 @@ end
 route("/rawpayload", method = POST) do 
 
   @show rawpayload()
-
-  rp = rawpayload()
+rp = rawpayload()
+io = open("raw.txt", "w")
+write(io, rp)
+close(io)
   print(rp)
-  save("rp.jld", "rp", rp)
-
 end
 
 #/home/svenduve/forfun/public/css
