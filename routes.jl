@@ -1,4 +1,6 @@
 using Genie, Genie.Router, Genie.Renderer.Json, Genie.Requests
+using JLD
+
 
 route("/") do
   serve_static_file("welcome.html")
@@ -14,6 +16,16 @@ route("/jsonpayload", method = POST) do
   @show rawpayload()
 
   json("Hello $(jsonpayload()["name"])")
+end
+
+route("/rawpayload", method = POST) do 
+
+  @show rawpayload()
+
+  rp = rawpayload()
+  print(rp)
+  save("rp.jld", "rp", rp)
+
 end
 
 #/home/svenduve/forfun/public/css
